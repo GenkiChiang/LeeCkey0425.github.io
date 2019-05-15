@@ -22,7 +22,7 @@ title: 关于Element-UI新旧版本造成的兼容问题
 
 4. 再通过分析element-UI github源码，git commit记录，查找到在4月12日，element-UI修改了css和font的loader配置，我们项目是在4月29日打包，期间element-UI发布版本中merged webpack config的修改。![](../images/element-git-commit-history.png)	
 
-5. input组件使用```.number```修饰符后，不能输入小数的问题，在el-input组件的git commit中也同样找到了修改内容。
+5. input组件使用```.number```修饰符后，不能输入小数的问题，是由于el-input组件**Input: simplify el-input implementation** ([**#13471**](https://github.com/ElemeFE/element/pull/13471))此次修改引起的。
 
 ### 解决问题
 ​	首先保证线上项目的稳定运行，避免版本升级带来的其他问题，我们决定回滚element-UI版本，去掉^符号范围，改用准确的```"element-ui": "2.4.11"```版本号。
