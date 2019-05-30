@@ -18,7 +18,7 @@ title: 关于Element-UI新旧版本造成的兼容问题
 
 2. 思考：字体文件地址不对，但是项目关于element-UI配置自第一版发布后从未修改过。而且webpack配置也未更改，且开发的时候字体加载地址是正确的，应该是element-UI build的时候处理css中的字体出现了问题。然后去node_modules里的element-UI包排查，发现element-UI包的版本是号```"version": "2.8.2"```，而项目的package中element-UI版本号为```"element-ui": "^2.4.11"```，为什么安装的版本号不对呢？
 
-3. 通过查询npm官方文档介绍[Caret Ranges ^1.2.3 ^0.2.5 ^0.0.4§](https://docs.npmjs.com/misc/semver.html#caret-ranges-123-025-004)学习到```"element-ui": "^2.4.11"```使用^符号范围会允许使用^2.4.11 := >=2.4.11 <3.0.0的版本。
+3. 通过查询npm官方文档介绍[Caret Ranges ^1.2.3 ^0.2.5 ^0.0.4§](https://docs.npmjs.com/misc/semver.html#caret-ranges-123-025-004)学习到```"element-ui": "^2.4.11"```使用^符号范围会允许使用^2.4.11 := >=2.4.11 <3.0.0的版本。原来```"element-ui": "^2.4.11"```使用的是2.8.2版本。
 
 4. 再通过分析element-UI github源码，git commit记录，查找到在4月12日，element-UI修改了css和font的loader配置，我们项目是在4月29日打包，期间element-UI发布版本中merged webpack config的修改。![](../images/element-git-commit-history.png)	
 
